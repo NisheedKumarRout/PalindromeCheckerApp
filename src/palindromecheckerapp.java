@@ -1,22 +1,32 @@
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class PalindromeChecker {
     public static void main(String[] args) {
         String original = "madam";
+
+        Queue<Character> queue = new LinkedList<>();
         Stack<Character> stack = new Stack<>();
 
-        // Push all characters onto the stack
+        // Enqueue and Push characters
         for (int i = 0; i < original.length(); i++) {
-            stack.push(original.charAt(i));
+            char c = original.charAt(i);
+            queue.add(c);  // Enqueue (FIFO)
+            stack.push(c); // Push (LIFO)
         }
 
-        String reversed = "";
-        // Pop characters to build the reversed string
-        while (!stack.isEmpty()) {
-            reversed += stack.pop();
+        boolean isPalindrome = true;
+
+        // Compare Dequeue (Original Order) vs Pop (Reverse Order)
+        while (!queue.isEmpty()) {
+            if (!queue.remove().equals(stack.pop())) {
+                isPalindrome = false;
+                break;
+            }
         }
 
-        if (original.equals(reversed)) {
+        if (isPalindrome) {
             System.out.println(original + " is a palindrome.");
         } else {
             System.out.println(original + " is not a palindrome.");
