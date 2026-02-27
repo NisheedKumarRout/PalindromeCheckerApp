@@ -1,13 +1,22 @@
 public class PalindromeChecker {
     public static void main(String[] args) {
         String original = "madam";
-        String reversed = "";
+        char[] charArray = original.toCharArray();
 
-        for (int i = original.length() - 1; i >= 0; i--) {
-            reversed += original.charAt(i);
+        boolean isPalindrome = true;
+        int start = 0;
+        int end = charArray.length - 1;
+
+        while (start < end) {
+            if (charArray[start] != charArray[end]) {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
         }
 
-        if (original.equals(reversed)) {
+        if (isPalindrome) {
             System.out.println(original + " is a palindrome.");
         } else {
             System.out.println(original + " is not a palindrome.");
