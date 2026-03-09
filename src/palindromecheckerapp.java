@@ -4,10 +4,15 @@ public class PalindromeCheckerApp {
 
         String input = "madam";
 
-        // Create object of PalindromeChecker
-        PalindromeChecker checker = new PalindromeChecker();
+        // Choose strategy dynamically
+        PalindromeStrategy strategy;
 
-        if (checker.checkPalindrome(input)) {
+        // Example: choose Stack strategy
+        strategy = new StackStrategy();
+
+        boolean result = strategy.checkPalindrome(input);
+
+        if (result) {
             System.out.println("Palindrome");
         } else {
             System.out.println("Not a Palindrome");
