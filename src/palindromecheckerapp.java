@@ -1,28 +1,32 @@
 public class PalindromeCheckerApp {
 
-    // UC9: Recursive Palindrome Checker
-    public static boolean isPalindromeRecursive(String str, int start, int end) {
+    // UC10: Case-Insensitive & Space-Ignored Palindrome
+    public static boolean isPalindromeIgnoreCaseSpace(String str) {
 
-        // Base condition
-        if (start >= end) {
-            return true;
+        // Normalize string: remove spaces and convert to lowercase
+        str = str.replaceAll("\\s+", "").toLowerCase();
+
+        int start = 0;
+        int end = str.length() - 1;
+
+        // Check palindrome
+        while (start < end) {
+            if (str.charAt(start) != str.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
         }
 
-        // Compare characters
-        if (str.charAt(start) != str.charAt(end)) {
-            return false;
-        }
-
-        // Recursive call
-        return isPalindromeRecursive(str, start + 1, end - 1);
+        return true;
     }
 
     public static void main(String[] args) {
 
-        String input = "madam";
+        String input = "Madam In Eden Im Adam";
 
-        if (isPalindromeRecursive(input, 0, input.length() - 1)) {
-            System.out.println("Palindrome");
+        if (isPalindromeIgnoreCaseSpace(input)) {
+            System.out.println("Palindrome (ignoring case and spaces)");
         } else {
             System.out.println("Not a Palindrome");
         }
